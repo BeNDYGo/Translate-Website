@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const text = input.value
         if (text === '') return
         
-        const response = await fetch('http://localhost:6767/translate', {
+        const response = await fetch('https://displeasureably-unbequeathable-erika.ngrok-free.dev', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
