@@ -6,77 +6,90 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f5f5f5;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
 }
 
 /* Header container */
 .Header {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 24px;
 }
 
 /* Input field */
 .input {
     width: 100%;
-    max-width: 500px;
-    padding: 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    max-width: 600px;
+    padding: 16px 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    font-weight: 400;
+    background: #ffffff;
+    transition: border-color 0.2s ease;
 }
 
 .input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #1a1a1a;
 }
 
 /* Translate button */
 .translateButton {
-    padding: 12px 30px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 16px 32px;
+    background: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #1a1a1a;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .translateButton:hover {
-    background-color: #0056b3;
-}
-
-.translateButton:active {
-    transform: translateY(1px);
+    background: #ffffff;
+    color: #1a1a1a;
 }
 
 /* Output area */
 .output {
     width: 100%;
-    max-width: 500px;
-    min-height: 100px;
-    padding: 15px;
-    background-color: white;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
+    max-width: 600px;
+    min-height: 80px;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    font-size: 15px;
     line-height: 1.6;
     word-wrap: break-word;
 }
 
+.output div {
+    margin-bottom: 12px;
+}
+
+.output div:last-child {
+    margin-bottom: 0;
+}
+
+.output strong {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
 /* Main content area */
 .Main {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -84,87 +97,63 @@ body {
 /* Tablet styles */
 @media (min-width: 768px) {
     .Header {
-        padding: 30px;
-        gap: 20px;
+        padding: 80px 40px;
+        gap: 32px;
     }
     
     .input,
     .output {
         max-width: 600px;
-        padding: 18px;
-        font-size: 18px;
+        padding: 20px 24px;
+        font-size: 16px;
     }
     
     .translateButton {
-        padding: 15px 40px;
-        font-size: 18px;
+        padding: 18px 40px;
+        font-size: 14px;
     }
 }
 
 /* Desktop styles */
 @media (min-width: 1024px) {
     .Header {
-        padding: 40px;
+        padding: 120px 40px;
         flex-direction: row;
         justify-content: center;
         align-items: flex-start;
-        gap: 20px;
+        gap: 32px;
     }
     
     .input,
     .output {
-        max-width: 400px;
-        padding: 20px;
-        font-size: 16px;
+        max-width: 360px;
+        padding: 24px;
+        font-size: 15px;
     }
     
     .translateButton {
-        padding: 20px 30px;
-        font-size: 16px;
+        padding: 24px 32px;
+        font-size: 14px;
         align-self: center;
-    }
-}
-
-/* Large desktop styles */
-@media (min-width: 1200px) {
-    .Header {
-        padding: 50px;
-    }
-    
-    .input,
-    .output {
-        max-width: 450px;
-        padding: 22px;
     }
 }
 
 /* Mobile optimizations */
 @media (max-width: 767px) {
     .Header {
-        padding: 15px;
+        padding: 40px 16px;
+        gap: 20px;
     }
     
     .input,
     .output {
-        font-size: 16px; /* Prevents zoom on iOS */
-        padding: 12px;
+        font-size: 16px;
+        padding: 14px 16px;
     }
     
     .translateButton {
         width: 100%;
-        max-width: 300px;
-        padding: 14px;
-    }
-}
-
-/* Extra small mobile */
-@media (max-width: 480px) {
-    .Header {
-        padding: 10px;
-    }
-    
-    .input,
-    .output {
-        padding: 10px;
+        max-width: 280px;
+        padding: 14px 24px;
     }
 }

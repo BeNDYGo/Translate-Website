@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     translateButton.addEventListener('click', async () => {
         const text = input.value
+        output.innerHTML = 'Loading...'
         if (text === '') return
         
         const response = await fetch('https://displeasureably-unbequeathable-erika.ngrok-free.dev/translate', {
@@ -14,6 +15,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             },
             body: JSON.stringify({text: text})
         })
+        if (!response.ok) {
+            output.innerHTML = 'error... :('
+            return
+        }
         const data = await response.json()
         output.innerHTML = `
                 <div><strong>Google:</strong> ${data.google || 'нет перевода'}</div>
