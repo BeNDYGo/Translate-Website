@@ -1,4 +1,7 @@
-aiohttp>=3.8.0
-beautifulsoup4>=4.11.0
-lxml>=4.9.0
-googletrans>=4.0.0rc1
+aiohttp
+beautifulsoup4
+lxml
+googletrans
+fastapi
+uvicorn
+pydantic

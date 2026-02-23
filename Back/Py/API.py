@@ -6,6 +6,7 @@ from pydantic import BaseModel
 # Python Flask/FastAPI сервер
 app = FastAPI()
 
+# Класс перевода
 class TranslateRequest(BaseModel):
     text: str
 
@@ -21,6 +22,10 @@ app.add_middleware(
 async def translate(request: TranslateRequest):
     result = await get_translate(request.text)
     return {"google": result[1], "wooordhunt": result[0]}
+
+@app.post("/ping")
+async def ping():
+    return {}
 
 if __name__ == "__main__":
     import uvicorn

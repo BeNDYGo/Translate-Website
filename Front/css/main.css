@@ -16,11 +16,44 @@ body {
 .Header {
     max-width: 800px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.header-content {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 24px;
+    justify-content: center;
+    gap: 16px;
+}
+
+.Header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.divider {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    opacity: 0.3;
+}
+
+#ping {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #666666;
+    transition: all 0.3s ease;
+}
+
+#ping.error {
+    color: #dc3545;
+}
+
+#ping.good {
+    color: #28a745;
 }
 
 /* Input field */
@@ -41,23 +74,120 @@ body {
     border-color: #1a1a1a;
 }
 
-/* Translate button */
+/* Translate button - elongated oval with energy animation */
 .translateButton {
-    padding: 16px 32px;
-    background: #1a1a1a;
-    color: #ffffff;
-    border: 1px solid #1a1a1a;
-    border-radius: 0;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    position: relative;
+    width: 400px;
+    height: 80px;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border: 2px solid #1a1a1a;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
 }
 
 .translateButton:hover {
-    background: #ffffff;
-    color: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.button-text {
+    position: relative;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.energy-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.energy-particle {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #000000, #1a1a1a);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+.energy-splash {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transform: translate(50%, -50%);
+}
+
+/* Animation for energy gathering and splash */
+.translateButton.animating .energy-particle {
+    animation: gatherEnergy 1.5s ease-in-out;
+}
+
+.translateButton.animating .energy-splash {
+    animation: energySplash 1.5s ease-in-out;
+}
+
+.translateButton.animating .button-text {
+    opacity: 0.3;
+}
+
+@keyframes gatherEnergy {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+    80% {
+        opacity: 0.8;
+        transform: translate(350px, -50%) scale(0.3);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(350px, -50%) scale(0.1);
+    }
+}
+
+@keyframes energySplash {
+    0%, 60% {
+        opacity: 0;
+        transform: translate(50%, -50%) scale(0.1);
+    }
+    70% {
+        opacity: 1;
+        transform: translate(50%, -50%) scale(2);
+        background: radial-gradient(circle, #000000, transparent);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(50%, -50%) scale(4);
+        background: radial-gradient(circle, #000000, transparent);
+    }
 }
 
 /* Output area */
@@ -87,17 +217,73 @@ body {
     color: #1a1a1a;
 }
 
+/* Ping display - minimalist styling */
+.ping {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.ping #ping {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #666666;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.ping #ping.error {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+.ping #ping.good {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
 /* Main content area */
 .Main {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
 /* Tablet styles */
 @media (min-width: 768px) {
     .Header {
-        padding: 80px 40px;
+        padding: 60px 40px;
+    }
+    
+    .header-content {
+        gap: 20px;
+    }
+    
+    .Header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .divider {
+        font-size: 2.8rem;
+    }
+    
+    #ping {
+        font-size: 1.8rem;
+    }
+    
+    .Main {
         gap: 32px;
     }
     
@@ -109,40 +295,81 @@ body {
     }
     
     .translateButton {
-        padding: 18px 40px;
-        font-size: 14px;
+        width: 450px;
+        height: 90px;
+        font-size: 20px;
     }
 }
 
 /* Desktop styles */
 @media (min-width: 1024px) {
     .Header {
-        padding: 120px 40px;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 32px;
+        padding: 80px 40px;
+    }
+    
+    .header-content {
+        gap: 24px;
+    }
+    
+    .Header h1 {
+        font-size: 3rem;
+    }
+    
+    .divider {
+        font-size: 3rem;
+    }
+    
+    #ping {
+        font-size: 2rem;
+    }
+    
+    .Main {
+        gap: 40px;
     }
     
     .input,
     .output {
-        max-width: 360px;
+        max-width: 500px;
         padding: 24px;
-        font-size: 15px;
+        font-size: 16px;
     }
     
     .translateButton {
-        padding: 24px 32px;
-        font-size: 14px;
-        align-self: center;
+        width: 500px;
+        height: 100px;
+        font-size: 22px;
     }
 }
 
 /* Mobile optimizations */
 @media (max-width: 767px) {
     .Header {
-        padding: 40px 16px;
+        padding: 30px 16px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .Header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .divider {
+        font-size: 1.2rem;
+        transform: rotate(90deg);
+        width: 20px;
+        text-align: center;
+    }
+    
+    #ping {
+        font-size: 1rem;
+    }
+    
+    .Main {
         gap: 20px;
+        padding: 16px;
     }
     
     .input,
@@ -152,8 +379,49 @@ body {
     }
     
     .translateButton {
-        width: 100%;
-        max-width: 280px;
-        padding: 14px 24px;
+        width: 280px;
+        height: 70px;
+        font-size: 16px;
     }
+}
+
+/* From Uiverse.io by iZOXVL */ 
+.boton-elegante {
+  padding: 15px 30px;
+  border: 2px solid #2c2c2c;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.boton-elegante::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante:hover {
+  border-color: #666666;
+  background: #292929;
 }

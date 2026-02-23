@@ -1,14 +1,36 @@
+const SERVER = 'http://localhost:6767'
+
 document.addEventListener('DOMContentLoaded', async () => {
     const input = document.getElementById('input')
     const translateButton = document.getElementById('Translate-Button')
     const output = document.getElementById('output')
+
+    // Функция измерения пинга
+    async function measurePing() {
+    const pingUI = document.getElementById('ping')
+    const startTime = performance.now()
+    
+    try {
+        const response = await fetch(SERVER + '/ping', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({})
+        })
+        
+        const endTime = performance.now()
+        const totalPing = endTime - startTime
+        
+        pingUI.textContent = `${totalPing.toFixed(2)}ms`
+    } catch (error) {
+        pingUI.textContent = 'Ошибка соединения'
+    }}
     
     translateButton.addEventListener('click', async () => {
         const text = input.value
         output.innerHTML = 'Loading...'
         if (text === '') return
         
-        const response = await fetch('https://displeasureably-unbequeathable-erika.ngrok-free.dev/translate', {
+        const response = await fetch(SERVER + '/translate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,4 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div><strong>Wooordhunt:</strong> ${data.wooordhunt || 'нет перевода'}</div>
             `
     })
+
+    measurePing()
 })
