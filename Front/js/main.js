@@ -1,4 +1,4 @@
-const SERVER = 'https://displeasureably-unbequeathable-erika.ngrok-free.dev'
+const SERVER = 'https://813e-159-255-33-104.ngrok-free.app'
 
 document.addEventListener('DOMContentLoaded', async () => {
     const input = document.getElementById('input')
