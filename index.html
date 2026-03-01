@@ -17,10 +17,18 @@
     </header>
     <main class="Main">
         <input type="text" id="input" class="input" placeholder="Enter text to translate...">
-        <button id="Translate-Button" class="boton-elegante">
-            <span class="button-text">Translate</span>
-        </button>
+        <div class="button-container">
+            <button id="Translate-Button" class="boton-elegante">
+                <span class="button-text">Translate</span>
+            </button>
+            <button id="Add-Button" class="boton-elegante add-button" style="display: none;">
+                <span class="button-text">Add</span>
+            </button>
+        </div>
         <div id="output" class="output"></div>
+        <section class="words-learning">
+            <div class="words-container"></div>
+        </section>
     </main>
     <script src="Front/js/main.js"></script>
 </body>
