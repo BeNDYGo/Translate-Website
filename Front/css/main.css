@@ -178,9 +178,9 @@ body {
     }
     
     .boton-elegante {
-        width: 450px;
         height: 90px;
         font-size: 20px;
+        min-width: 200px;
     }
     
     .words-learning h2 {
@@ -227,9 +227,9 @@ body {
     }
     
     .boton-elegante {
-        width: 500px;
         height: 100px;
         font-size: 22px;
+        min-width: 200px;
     }
     
     .words-learning {
@@ -284,9 +284,9 @@ body {
     }
     
     .boton-elegante {
-        width: 280px;
         height: 70px;
         font-size: 16px;
+        min-width: 120px;
     }
     
     .words-learning h2 {
@@ -303,7 +303,13 @@ body {
     }
 }
 
-/* From Uiverse.io by iZOXVL */ 
+.button-container {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .boton-elegante {
   padding: 15px 30px;
   border: 2px solid #ffffff;
@@ -317,6 +323,7 @@ body {
   position: relative;
   overflow: hidden;
   font-weight: bold;
+  flex: 1;
 }
 
 .boton-elegante::after {

@@ -1,4 +1,4 @@
-const SERVER = 'https://813e-159-255-33-104.ngrok-free.app'
+const SERVER = 'https://memory-tend-rica-multiple.trycloudflare.com'
 
 document.addEventListener('DOMContentLoaded', async () => {
     const input = document.getElementById('input')
@@ -32,25 +32,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         const buttonContainer = document.querySelector('.button-container')
         addButton.style.display = 'none'
         buttonContainer.classList.remove('has-add')
-        output.innerHTML = 'Loading...'
         if (text === '') return
-        
-        const response = await fetch(SERVER + '/translate', {
+
+        const googleResult = document.getElementById('google-result')
+        const wooResult = document.getElementById('wooordhunt-result')
+
+        googleResult.textContent = ''
+        wooResult.textContent = ''
+
+        const response_google = await fetch(SERVER + '/translate/google', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({text: text})
         })
-        if (!response.ok) {
+        if (!response_google.ok) {
             output.innerHTML = 'error... :('
             return
         }
-        const data = await response.json()
-        output.innerHTML = `
-                <div><strong>Google:</strong> ${data.google || 'нет перевода'}</div>
-                <div><strong>Wooordhunt:</strong> ${data.wooordhunt || 'нет перевода'}</div>
-            `
+        const data_google = await response_google.json()
+        googleResult.textContent = data_google.google || 'нет перевода'
+
+        if (!text.includes(' ')) {
+            const response_wooordhunt = await fetch(SERVER + '/translate/wooordhunt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({text: text})
+            })
+            if (response_wooordhunt.ok) {
+                const data_wooordhunt = await response_wooordhunt.json()
+                wooResult.textContent = data_wooordhunt.wooordhunt || 'нет перевода'
+            } else {
+                wooResult.textContent = 'error'
+            }
+        } else {
+            wooResult.textContent = 'не поддерживается для фраз'
+        }
         addButton.style.display = 'block'
         buttonContainer.classList.add('has-add')
     })

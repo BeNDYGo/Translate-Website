@@ -1,4 +1,4 @@
-from translate import get_translate
+from translate import get_translate_google, get_translate_wooo
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -18,10 +18,15 @@ app.add_middleware(
     allow_headers=["*"],  # Разрешить JSON заголовки
 )
 
-@app.post("/translate")
+@app.post("/translate/google")
 async def translate(request: TranslateRequest):
-    result = await get_translate(request.text)
-    return {"google": result[1], "wooordhunt": result[0]}
+    result = await get_translate_google(request.text)
+    return {"google": result}
+
+@app.post("/translate/wooordhunt")
+async def translate(request: TranslateRequest):
+    result = await get_translate_wooo(request.text)
+    return {"wooordhunt": result}
 
 @app.post("/ping")
 async def ping():
