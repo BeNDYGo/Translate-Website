@@ -1,4 +1,4 @@
-const SERVER = 'https://memory-tend-rica-multiple.trycloudflare.com'
+const SERVER = 'https://jeans-deployment-ethics-moon.trycloudflare.com'
 
 document.addEventListener('DOMContentLoaded', async () => {
     const input = document.getElementById('input')
