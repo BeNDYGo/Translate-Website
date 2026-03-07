@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,7 @@ body {
     background-color: #1a1a1a;
 }
 
-/* Header container */
+/* Header */
 .Header {
     max-width: 800px;
     margin: 0 auto;
@@ -28,112 +27,27 @@ body {
 }
 
 .Header h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
-    color: #ffffff;
-    margin: 0;
 }
 
 .divider {
-    font-size: 2.5rem;
+    font-size: clamp(1.2rem, 4vw, 3rem);
     font-weight: 700;
-    color: #ffffff;
     opacity: 0.3;
 }
 
 #ping {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     color: #cccccc;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-#ping.error {
-    color: #dc3545;
-}
+#ping.error { color: #dc3545; }
+#ping.good  { color: #28a745; }
 
-#ping.good {
-    color: #28a745;
-}
-
-/* Input field */
-.input {
-    width: 100%;
-    max-width: 600px;
-    padding: 16px 20px;
-    border: 1px solid #404040;
-    border-radius: 0;
-    font-size: 16px;
-    font-weight: 400;
-    background: #2a2a2a;
-    color: #ffffff;
-    transition: border-color 0.2s ease;
-}
-
-.input:focus {
-    outline: none;
-    border-color: #ffffff;
-}
-
-/* Output area */
-.output {
-    width: 100%;
-    max-width: 600px;
-    min-height: 80px;
-    padding: 20px;
-    background: #2a2a2a;
-    border: 1px solid #404040;
-    border-radius: 0;
-    font-size: 15px;
-    line-height: 1.6;
-    word-wrap: break-word;
-    color: #ffffff;
-}
-
-.output div {
-    margin-bottom: 12px;
-}
-
-.output div:last-child {
-    margin-bottom: 0;
-}
-
-.output strong {
-    font-weight: 600;
-    color: #ffffff;
-}
-
-/* Words learning section */
-.words-learning {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.words-learning h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0;
-    text-align: center;
-}
-
-.words-container {
-    padding: 20px;
-    background: #2a2a2a;
-    border: 1px solid #404040;
-    border-radius: 0;
-    font-size: 15px;
-    line-height: 1.6;
-    word-wrap: break-word;
-    color: #ffffff;
-    min-height: 0;
-    flex-grow: 1;
-}
-
-/* Main content area */
+/* Main layout */
 .Main {
     max-width: 800px;
     margin: 0 auto;
@@ -144,165 +58,59 @@ body {
     gap: 24px;
 }
 
-/* Tablet styles */
-@media (min-width: 768px) {
-    .Header {
-        padding: 60px 40px;
-    }
-    
-    .header-content {
-        gap: 20px;
-    }
-    
-    .Header h1 {
-        font-size: 2.8rem;
-    }
-    
-    .divider {
-        font-size: 2.8rem;
-    }
-    
-    #ping {
-        font-size: 1.8rem;
-    }
-    
-    .Main {
-        gap: 32px;
-    }
-    
-    .input,
-    .output {
-        max-width: 600px;
-        padding: 20px 24px;
-        font-size: 16px;
-    }
-    
-    .boton-elegante {
-        height: 90px;
-        font-size: 20px;
-        min-width: 200px;
-    }
-    
-    .words-learning h2 {
-        font-size: 1.8rem;
-    }
-    
-    .words-container {
-        padding: 20px 24px;
-        font-size: 16px;
-    }
+/* Shared panel style */
+.input,
+.output,
+.words-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 16px 20px;
+    background: #2a2a2a;
+    border: 1px solid #404040;
+    border-radius: 0;
+    font-size: 16px;
+    color: #ffffff;
+    word-wrap: break-word;
 }
 
-/* Desktop styles */
-@media (min-width: 1024px) {
-    .Header {
-        padding: 80px 40px;
-    }
-    
-    .header-content {
-        gap: 24px;
-    }
-    
-    .Header h1 {
-        font-size: 3rem;
-    }
-    
-    .divider {
-        font-size: 3rem;
-    }
-    
-    #ping {
-        font-size: 2rem;
-    }
-    
-    .Main {
-        gap: 40px;
-    }
-    
-    .input,
-    .output {
-        max-width: 500px;
-        padding: 24px;
-        font-size: 16px;
-    }
-    
-    .boton-elegante {
-        height: 100px;
-        font-size: 22px;
-        min-width: 200px;
-    }
-    
-    .words-learning {
-        max-width: 500px;
-    }
-    
-    .words-learning h2 {
-        font-size: 2rem;
-    }
-    
-    .words-container {
-        padding: 24px;
-        font-size: 16px;
-    }
+.input {
+    transition: border-color 0.2s ease;
 }
 
-/* Mobile optimizations */
-@media (max-width: 767px) {
-    .Header {
-        padding: 30px 16px;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .Header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .divider {
-        font-size: 1.2rem;
-        transform: rotate(90deg);
-        width: 20px;
-        text-align: center;
-    }
-    
-    #ping {
-        font-size: 1rem;
-    }
-    
-    .Main {
-        gap: 20px;
-        padding: 16px;
-    }
-    
-    .input,
-    .output {
-        font-size: 16px;
-        padding: 14px 16px;
-    }
-    
-    .boton-elegante {
-        height: 70px;
-        font-size: 16px;
-        min-width: 120px;
-    }
-    
-    .words-learning h2 {
-        font-size: 1.2rem;
-    }
-    
-    .words-learning {
-        gap: 12px;
-    }
-    
-    .words-container {
-        padding: 14px 16px;
-        font-size: 16px;
-    }
+.input:focus {
+    outline: none;
+    border-color: #ffffff;
 }
 
+.output {
+    min-height: 80px;
+    line-height: 1.6;
+}
+
+.output div         { margin-bottom: 12px; }
+.output div:last-child { margin-bottom: 0; }
+.output strong      { font-weight: 600; }
+
+/* Words section */
+.words-learning {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.words-learning h2 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 600;
+    text-align: center;
+}
+
+.words-container {
+    line-height: 1.6;
+}
+
+/* Buttons */
 .button-container {
     display: flex;
     gap: 16px;
@@ -311,48 +119,48 @@ body {
 }
 
 .boton-elegante {
-  padding: 15px 30px;
-  border: 2px solid #ffffff;
-  background-color: #ffffff;
-  color: #1a1a1a;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: all 0.4s ease;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  font-weight: bold;
-  flex: 1;
+    flex: 1;
+    padding: 15px 30px;
+    height: clamp(70px, 10vw, 100px);
+    min-width: 120px;
+    border: 2px solid #ffffff;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .boton-elegante::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  transform: scale(0);
-  transition: transform 0.5s ease;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0,0,0,0.25) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
 }
 
-.boton-elegante:hover::after {
-  transform: scale(4);
-}
-
+.boton-elegante:hover::after { transform: scale(4); }
 .boton-elegante:hover {
-  border-color: #cccccc;
-  background: #f0f0f0;
+    border-color: #cccccc;
+    background: #f0f0f0;
 }
 
-.button-text {
-  color: inherit;
-  font-size: inherit;
-  font-weight: inherit;
+/* Mobile */
+@media (max-width: 767px) {
+    .header-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .divider {
+        transform: rotate(90deg);
+        width: 20px;
+        text-align: center;
+    }
 }
