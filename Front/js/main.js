@@ -1,5 +1,5 @@
 async function get_api() {
-    const APIJSON = 'https://raw.githubusercontent.com/BeNDYGo/BeNDYGo-API/refs/heads/main/Translate-Website-API.json'
+    const APIJSON = 'https://bendygo.github.io/BeNDYGo-API/Translate-Website-API.json'
     const response = await fetch (APIJSON)
     if (!response.ok) return
     const url = await response.json()
