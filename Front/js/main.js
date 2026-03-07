@@ -1,4 +1,4 @@
-const SERVER = 'https://813e-159-255-33-104.ngrok-free.app'
+const SERVER = 'https://github.com/BeNDYGo/BeNDYGo-API'
 
 document.addEventListener('DOMContentLoaded', async () => {
     const input = document.getElementById('input')
