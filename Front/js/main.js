@@ -1,6 +1,13 @@
-const SERVER = 'https://github.com/BeNDYGo/BeNDYGo-API'
+async function get_api() {
+    const APIJSON = 'https://raw.githubusercontent.com/BeNDYGo/BeNDYGo-API/refs/heads/main/Translate-Website-API.json'
+    const response = await fetch (APIJSON)
+    if (!response.ok) return
+    const url = await response.json()
+    return url["url"]
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const API = await get_api()
     const input = document.getElementById('input')
     const translateButton = document.getElementById('Translate-Button')
     const output = document.getElementById('output')
@@ -9,22 +16,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Функция измерения пинга
     async function measurePing() {
-    const pingUI = document.getElementById('ping')
-    const startTime = performance.now()
-    
-    try {
-        const response = await fetch(SERVER + '/ping', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({})
-        })
+        const pingUI = document.getElementById('ping')
+        if (!API) {
+            pingUI.textContent = 'Соединение отсутсвует'
+        }
+        const startTime = performance.now()
         
-        const endTime = performance.now()
-        const totalPing = endTime - startTime
-        
-        pingUI.textContent = `${totalPing.toFixed(2)}ms`
-    } catch (error) {
-        pingUI.textContent = 'Ошибка соединения'
+        try {
+            const response = await fetch(API + '/ping', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({})
+            })
+            
+            const endTime = performance.now()
+            const totalPing = endTime - startTime
+            
+            pingUI.textContent = `${totalPing.toFixed(2)}ms`
+        } catch (error) {
+            pingUI.textContent = 'Ошибка сервера'
     }}
     
     translateButton.addEventListener('click', async () => {
@@ -40,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         googleResult.textContent = ''
         wooResult.textContent = ''
 
-        const response_google = await fetch(SERVER + '/translate/google', {
+        const response_google = await fetch(API + '/translate/google', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         googleResult.textContent = data_google.google || 'нет перевода'
 
         if (!text.includes(' ')) {
-            const response_wooordhunt = await fetch(SERVER + '/translate/wooordhunt', {
+            const response_wooordhunt = await fetch(API + '/translate/wooordhunt', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
